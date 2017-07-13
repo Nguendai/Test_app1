@@ -1,0 +1,39 @@
+*{margin:0;padding:0; }
+
+@media (min-width:970px){
+    .thumbnail .image {
+    height: 270px;
+}
+}
+
+.top h3 {
+    margin-bottom: 15px;
+    color: #ff9900;
+    border-bottom: 3px solid;
+    padding-bottom: 11px;
+}
+
+.khoia.col-md-3 {
+    text-align: center;
+}
+
+button.btn.btn-cart {
+    background: rgba(66, 66, 31, 0.78);
+    color: white;
+}
+
+button.btn.btn-cart:hover {
+    background: gray;
+}
+
+span.price-new {
+    color: red;
+    line-height: 3;
+}
+
+.thumbnail .caption {
+    text-align: center;
+}
+ 
+
+ 
