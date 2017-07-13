@@ -23,8 +23,9 @@ Route::group(['prefix'=>'admin','middleware'=>'CheckAdmin'],function(){
 	Route::get('/list','ProductControll@getList');
 	Route::get('/add','ProductControll@getAdd');
 	Route::post('/add','ProductControll@postAdd');
-	Route::get('/edit/{id}','ProductControll@getEdit');
-	Route::post('/edit/{id}','ProductControll@postEdit');
+	Route::get('/edit/{id}','ProductControll@getEdit')->where('id', '[0-9]+');
+	Route::post('/edit/{id}','ProductControll@postEdit')->where('id', '[0-9]+');
+	Route::get('/delete/{id}','ProductControll@deleteProduct')->where('id', '[0-9]+');
 });
 
 // Route::post('/login','AuthLoginControll@postLogin')->name('login');

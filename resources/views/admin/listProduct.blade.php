@@ -31,16 +31,25 @@
                     <td>{{$pd->name}}</td>
                     <td>{{$pd->price}}</td>
                     <td><img src="upload/images/{{$pd->images}}" alt="" width ="120px" class="thumbnail"></td>
-                    <td>{{$pd->description}}</td>
+                    <td>{{str_limit($pd->description, $limit = 50, $end = '...')}}</td>
                     
-                    <td class="center"><i  onclick="return deleteProduct();" class="fa fa-trash-o fa-fw"></i><a href="admin/delete/{{$pd->id}}"> Delete</a></td>
+                    <td class="center"><i   class="fa fa-trash-o fa-fw"></i><a onclick="return deleteProduct();" href="admin/delete/{{$pd->id}}"> Delete</a></td>
                     <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/edit/{{$pd->id}}">Edit</a></td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+        {{$product->links()}}
     </div>
     <!-- /.row -->
 </div>
 </div>
+@endsection
+@section('script')
+<script type="text/javascript">
+    function deleteProduct() {
+        var conf = confirm("DELETE");
+        return conf;
+    }
+</script>
 @endsection
