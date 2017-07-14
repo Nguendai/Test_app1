@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group">
                     @if($product->images != null)
-                    <img src="upload/images/{{$product->images}}" alt="">
+                    <img src="upload/images/{{$product->images}}" alt=""  class="img-responsive">
                     @endif
                 </div>
                 <div class="form-group">
@@ -34,7 +34,7 @@
                     <textarea class="form-control"  name="description" rows="3">{{$product->description}}</textarea>
                 </div>
                 <button type="submit" name="submit" class="btn btn-default">Product Add</button>
-                <button type="reset" class="btn btn-default">Delete</button>
+                 <a href="{{url('admin/list')}}" class="btn btn-default">Cancel</a>
                 <form>
                 </div>
                 

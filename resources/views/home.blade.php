@@ -18,7 +18,7 @@
                     <div class="caption text-align-center">
                         <h4><a href="detail/{{$pd->id}}">{{$pd->name}}</a></h4>
                         <div class="description">
-                            {{str_limit($pd->description, $limit = 50, $end = '...')}}
+                            {{str_limit($pd->description, $limit = 30, $end = '...')}}
                         </div>
                         <div class="price">
                             <span class="price-new">${{$pd->price}}</span>

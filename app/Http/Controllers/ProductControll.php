@@ -25,7 +25,8 @@ class ProductControll extends Controller
     		[
          'nameproduct' => 'required|min:3|max:100',
          'description'=> 'required|min:3|max:300',
-         'price'=> 'required|max:999999999'
+         'price'=> 'required|max:999999999',
+         'image' =>'required|mimes:png,gif,jpg,jpeg|max:10000',
 
          ],
          [
@@ -37,6 +38,9 @@ class ProductControll extends Controller
          'description.max'=>'Description must be less than 300 char',
          'price.required'=>"Please,EnterPrice",
          'price.max'=>'Error'	,
+         'image.required'=>'Please,Enter Image',
+         'image.mimes'=>"Do not images",
+         'image.max'=>'Max size is 10mb',
 
          ]);
     	if($validate->fails()){
@@ -44,19 +48,7 @@ class ProductControll extends Controller
     	}
     	$image=null;
     	if($req->file('image')){
-    		$image=$req->file('image');
-    		$validate=Validator::make($req->all(),
-    			[
-                'image' =>'required|mimes:png,gif,jpg,jpeg|max:10240',
-                ],
-                [
-                'image.required'=>'Please,Enter Image',
-                'image.mimes'=>"Do not images",
-                'image.max'=>'Max size is 10mb',
-                ]);
-    		if($validate->fails()){
-    			return redirect()->intended('admin/add')->withErrors($validate);
-    		}
+    	   $image=$req->file('image');
            $path = 'upload/images';
            $fileName = time()."-".$image->getClientOriginalName();
            $image->move($path , $fileName); 
@@ -110,7 +102,8 @@ class ProductControll extends Controller
              }
             $path = 'upload/images';
             $fileName = time()."-".$image->getClientOriginalName();
-            $filePath=$path.$req->images;
+            $filePath=$path.$product->images;
+            // dd($filePath);
             if(file_exists($filePath)){
                 unlink($filePath);
             }
@@ -125,20 +118,15 @@ class ProductControll extends Controller
             $product->name=$req->nameproduct;
             $product->description=$req->description;
             $product->price=$req->price;
-            // $product->images=$image;
             $product->save();
-        }
-        if($id !=false){
+            }
+        
          return redirect('admin/list')->with('success','Success');
-        }else{
-         about(404);
-        }   
+       
     }
     public function deleteProduct($id){
         $product=Product::find($id);
-        // dd($product->images);  
         $filePath=public_path('upload/images/').$product->images;
-        // dd($filePath);
         if(file_exists($filePath)){
             unlink($filePath);
         }
