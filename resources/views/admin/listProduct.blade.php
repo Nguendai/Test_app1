@@ -30,7 +30,7 @@
                     <td>{{$i++}}</td>
                     <td>{{$pd->name}}</td>
                     <td>{{$pd->price}}</td>
-                    <td><img src="upload/images/{{$pd->images}}" alt="" width ="120px" class="thumbnail"></td>
+                    <td><img src="upload/images/{{$pd->images}}" alt="" width ="50px" class="thumbnail"></td>
                     <td>{{str_limit($pd->description, $limit = 50, $end = '...')}}</td>
                     
                     <td class="center"><i   class="fa fa-trash-o fa-fw"></i><a onclick="return deleteProduct();" href="admin/delete/{{$pd->id}}"> Delete</a></td>
